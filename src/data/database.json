@@ -1,0 +1,249 @@
+{
+  "students": {
+    "byYear": [
+      { "year": "2024", "count": 12695 },
+      { "year": "2023", "count": 11540 },
+      { "year": "2022", "count": 10820 },
+      { "year": "2021", "count": 9750 },
+      { "year": "2020", "count": 8900 }
+    ],
+    "byFaculty": [
+      { "name": "FIP", "value": 8053 },
+      { "name": "FBS", "value": 7234 },
+      { "name": "FIS", "value": 6543 },
+      { "name": "FMIPA", "value": 5432 },
+      { "name": "FT", "value": 4321 },
+      { "name": "FIK", "value": 3456 },
+      { "name": "FE", "value": 2345 },
+      { "name": "FH", "value": 1567 },
+      { "name": "PASCASARJANA", "value": 1000 }
+    ],
+    "byLevel": [
+      { "name": "S1", "value": 45 },
+      { "name": "S2", "value": 25 },
+      { "name": "S3", "value": 15 },
+      { "name": "D3", "value": 10 },
+      { "name": "Profesi", "value": 5 }
+    ]
+  },
+  "professors": {
+    "byEducation": [
+      { "name": "S3", "value": 496 },
+      { "name": "S2", "value": 833 },
+      { "name": "N/A", "value": 1 },
+      { "name": "Sp", "value": 10 }
+    ],
+    "byPosition": [
+      { "name": "Profesor", "value": 144 },
+      { "name": "Lektor Kepala", "value": 263 },
+      { "name": "Lektor", "value": 469 },
+      { "name": "Asisten Ahli", "value": 205 },
+      { "name": "Tenaga Pengajar", "value": 259 }
+    ],
+    "byStatus": [
+      { "name": "PNS", "value": 1026 },
+      { "name": "Tidak Tetap", "value": 69 },
+      { "name": "Tetap", "value": 30 },
+      { "name": "PPPK", "value": 52 },
+      { "name": "CPNS", "value": 163 }
+    ],
+    "byFaculty": [
+      { "name": "FMIPA", "value": 199 },
+      { "name": "FT", "value": 211 },
+      { "name": "FIP", "value": 173 },
+      { "name": "FBS", "value": 215 },
+      { "name": "FIS", "value": 131 },
+      { "name": "FE", "value": 176 },
+      { "name": "FIK", "value": 88 },
+      { "name": "FH", "value": 64 },
+      { "name": "FK", "value": 83 }
+    ],
+    "profiles": [
+      {
+        "id": 1,
+        "name": "Yanyan Sofiyan, M.Kom.",
+        "photoUrl": "/images/professors/yanyan-sofiyan.jpeg",
+        "nuptk": "4048767668131023",
+        "position": "Asisten Ahli",
+        "startDate": "2019-04-01",
+        "verified": true,
+        "academicProfile": {
+          "fieldOfScience": "RUMPUN ILMU FORMAL",
+          "knowledgeTree": "KOMPUTER",
+          "branch": "SISTEM INFORMASI"
+        },
+        "rank": {
+          "title": "Penata Muda Tk. I - III/b",
+          "startDate": "2019-11-01"
+        },
+        "certification": {
+          "fieldOfStudy": "Sistem Informasi",
+          "educatorRegistrationNumber": "21104109704697",
+          "decreNumber": "21-001022-20758",
+          "certificationYear": 2021
+        },
+        "faculty": "FT",
+        "sintaProfile": {
+          "id": "6655767",
+          "url": "https://sinta.kemdikbud.go.id/authors/profile/6655767",
+          "SINTA Score Overall": 233,
+          "SINTA Score 3Yr": 23,
+          "Affl Score": 0,
+          "Affl Score 3Yr": 0,
+          "metrics": {
+            "scopus": {
+              "articles": 5,
+              "citations": 23,
+              "citedDocuments": 4,
+              "hIndex": 3,
+              "i10Index": 1,
+              "gIndex": 3
+            },
+            "googleScholar": {
+              "articles": 34,
+              "citations": 127,
+              "citedDocuments": 12,
+              "hIndex": 7,
+              "i10Index": 5,
+              "gIndex": 1
+            }
+          },
+          "citations": {
+            "scopus": 25,
+            "googleScholar": 127
+          },
+          "documents": {
+            "scopus": 15,
+            "googleScholar": 45
+          },
+          "hIndex": {
+            "scopus": 3,
+            "googleScholar": 6
+          },
+          "i10Index": {
+            "googleScholar": 4
+          }
+        }
+      },
+      {
+        "id": 2,
+        "name": "Dr. Ade Gafar Abdullah, M.Si.",
+        "photoUrl": "/images/professors/ade-gafar.jpg",
+        "nuptk": "1050762663130093",
+        "position": "Profesor",
+        "startDate": "2020-08-01",
+        "verified": true,
+        "academicProfile": {
+          "fieldOfScience": "RUMPUN ILMU TEKNIK",
+          "knowledgeTree": "TEKNIK ELEKTRO",
+          "branch": "TEKNIK KENDALI"
+        },
+        "rank": {
+          "title": "Pembina Utama Muda - IV/c",
+          "startDate": "2018-04-01"
+        },
+        "certification": {
+          "fieldOfStudy": "Teknik Elektro",
+          "educatorRegistrationNumber": "09107407603123",
+          "decreNumber": "09-001012-12456",
+          "certificationYear": 2009
+        },
+        "faculty": "FT"
+      },
+      {
+        "id": 3,
+        "name": "Drs. Asep Herry Hernawan, M.Pd.",
+        "photoUrl": "/images/professors/asep-herry.jpg",
+        "nuptk": "5152749651200002",
+        "position": "Lektor Kepala",
+        "startDate": "2010-01-01",
+        "verified": true,
+        "academicProfile": {
+          "fieldOfScience": "RUMPUN ILMU PENDIDIKAN",
+          "knowledgeTree": "KURIKULUM DAN PEMBELAJARAN",
+          "branch": "PENGEMBANGAN KURIKULUM"
+        },
+        "rank": {
+          "title": "Pembina - IV/a",
+          "startDate": "2015-10-01"
+        },
+        "certification": {
+          "fieldOfStudy": "Pengembangan Kurikulum",
+          "educatorRegistrationNumber": "10110507601234",
+          "decreNumber": "10-001019-19876",
+          "certificationYear": 2010
+        },
+        "faculty": "FIP"
+      },
+      {
+        "id": 4,
+        "name": "Dr. Isma Widiaty, M.Pd.",
+        "photoUrl": "/images/professors/isma-widiaty.jpg",
+        "nuptk": "8442755657300033",
+        "position": "Lektor",
+        "startDate": "2012-03-01",
+        "verified": true,
+        "academicProfile": {
+          "fieldOfScience": "RUMPUN ILMU TERAPAN",
+          "knowledgeTree": "PENDIDIKAN KESEJAHTERAAN KELUARGA",
+          "branch": "PENDIDIKAN TATA BUSANA"
+        },
+        "rank": {
+          "title": "Penata Tk. I - III/d",
+          "startDate": "2016-07-01"
+        },
+        "certification": {
+          "fieldOfStudy": "Pendidikan Tata Busana",
+          "educatorRegistrationNumber": "13104307707654",
+          "decreNumber": "13-001345-23765",
+          "certificationYear": 2013
+        },
+        "faculty": "FT"
+      },
+      {
+        "id": 5,
+        "name": "Erna Wardani, M.Sc.",
+        "photoUrl": "/images/professors/erna-wardani.jpg",
+        "nuptk": "1252765666210083",
+        "position": "Tenaga Pengajar",
+        "startDate": "2022-02-01",
+        "verified": false,
+        "academicProfile": {
+          "fieldOfScience": "RUMPUN ILMU ALAM",
+          "knowledgeTree": "FISIKA",
+          "branch": "FISIKA MATERIAL"
+        },
+        "rank": {
+          "title": "Penata Muda - III/a",
+          "startDate": "2022-02-01"
+        },
+        "certification": {
+          "fieldOfStudy": "",
+          "educatorRegistrationNumber": "",
+          "decreNumber": "",
+          "certificationYear": null
+        },
+        "faculty": "FMIPA"
+      }
+    ]
+  },
+  "stats": {
+    "professors": {
+      "total": 1340,
+      "s3Percentage": 37
+    },
+    "students": {
+      "total": 52002,
+      "yearlyIncreasePercentage": 12
+    },
+    "graduation": {
+      "total": 1514,
+      "yearlyDecreasePercentage": 83
+    },
+    "applicants": {
+      "total": 123187,
+      "yearlyDecreasePercentage": 25
+    }
+  },
+  "lastUpdated": "2023-06-14T08:30:00Z"
+}
