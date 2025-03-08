@@ -51,6 +51,22 @@ export interface SintaProfile {
   };
 }
 
+/**
+ * Represents the profile of a dosen.
+ * 
+ * @property {number} id - ID unik dari dosen.
+ * @property {string} name - Nama lengkap dosen.
+ * @property {string} nuptk - Nomor Unik Pendidik dan Tenaga Kependidikan.
+ * @property {string} position - Posisi atau jabatan dosen.
+ * @property {string} startDate - Tanggal mulai bekerja dosen.
+ * @property {boolean} verified - Status verifikasi dosen.
+ * @property {string} [photoUrl] - URL foto profil dosen (opsional).
+ * @property {ProfessorAcademicProfile} academicProfile - Profil akademik dosen.
+ * @property {ProfessorRank} rank - Peringkat atau pangkat dosen.
+ * @property {ProfessorCertification} certification - Sertifikasi dosen.
+ * @property {string} faculty - Fakultas tempat dosen bekerja.
+ * @property {SintaProfile} [sintaProfile] - Profil Sinta dosen (opsional).
+ */
 export interface ProfessorProfile {
   id: number;
   name: string;
