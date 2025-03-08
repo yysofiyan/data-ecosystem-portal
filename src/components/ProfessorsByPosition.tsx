@@ -2,23 +2,35 @@ import React, { useState } from 'react';
 import { DataByName, getProfessorProfilesByPosition, ProfessorProfile } from '../utils/databaseService';
 import ProfessorDetail from './ProfessorDetail';
 
+// Definisi interface untuk props komponen
 interface ProfessorsByPositionProps {
   data: DataByName[];
 }
 
+// Definisi komponen fungsional dengan props
 const ProfessorsByPosition: React.FC<ProfessorsByPositionProps> = ({ data }) => {
+  // State untuk menyimpan posisi yang dipilih
   const [selectedPosition, setSelectedPosition] = useState<string | null>(null);
+  // State untuk menyimpan profil dosen yang dipilih
   const [selectedProfessor, setSelectedProfessor] = useState<ProfessorProfile | null>(null);
+  // State untuk menyimpan profil dosen berdasarkan posisi yang dipilih
   const [positionProfiles, setPositionProfiles] = useState<ProfessorProfile[]>([]);
 
+  // Fungsi untuk menangani klik pada posisi
   const handlePositionClick = (position: string) => {
+    // Mendapatkan profil dosen berdasarkan posisi
     const profiles = getProfessorProfilesByPosition(position);
+    // Mengatur posisi yang dipilih
     setSelectedPosition(position);
+    // Mengatur profil dosen berdasarkan posisi yang dipilih
     setPositionProfiles(profiles);
+    // Mengatur dosen yang dipilih menjadi null
     setSelectedProfessor(null);
   };
 
+  // Fungsi untuk menangani klik pada tabel dosen
   const handleProfessorClick = (professor: ProfessorProfile) => {
+    // Mengatur profile dosen yang dipilih
     setSelectedProfessor(professor);
   };
 
