@@ -53,7 +53,7 @@ const ProfessorSection = ({
         />
         <HorizontalBarChart
           data={byFaculty}
-          title="Berdasarkan Fakultas"
+          title="Berdasarkan Linearitas"
           color="#9b87f5"
         />
         <FilterableDataTable
@@ -64,7 +64,7 @@ const ProfessorSection = ({
         />
         <FilterableDataTable
           data={byFaculty}
-          title="Data Dosen Berdasarkan Fakultas"
+          title="Data Dosen Berdasarkan Linearitas"
           className="lg:col-span-2"
           type="summary"
         />

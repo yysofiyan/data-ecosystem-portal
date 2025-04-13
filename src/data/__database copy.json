@@ -1,38 +1,62 @@
 {
   "students": {
     "byYear": [
-      { "year": "2024", "count": 0 },
-      { "year": "2023", "count": 0 },
-      { "year": "2022", "count": 0 },
-      { "year": "2021", "count": 0 },
-      { "year": "2020", "count": 0 }
+      { "year": "2024", "count": 12695 },
+      { "year": "2023", "count": 11540 },
+      { "year": "2022", "count": 10820 },
+      { "year": "2021", "count": 9750 },
+      { "year": "2020", "count": 8900 }
     ],
-    "byProdi": [
-      { "name": "Informatika", "value": 600 },
-      { "name": "Sistem Informasi", "value": 500 }
-      
+    "byFaculty": [
+      { "name": "FIP", "value": 8053 },
+      { "name": "FBS", "value": 7234 },
+      { "name": "FIS", "value": 6543 },
+      { "name": "FMIPA", "value": 5432 },
+      { "name": "FT", "value": 4321 },
+      { "name": "FIK", "value": 3456 },
+      { "name": "FE", "value": 2345 },
+      { "name": "FH", "value": 1567 },
+      { "name": "PASCASARJANA", "value": 1000 }
     ],
     "byLevel": [
-      { "name": "S1", "value": 800 },
-      { "name": "S2", "value": 0 }
+      { "name": "S1", "value": 45 },
+      { "name": "S2", "value": 25 },
+      { "name": "S3", "value": 15 },
+      { "name": "D3", "value": 10 },
+      { "name": "Profesi", "value": 5 }
     ]
   },
   "professors": {
     "byEducation": [
-      { "name": "S3", "value": 2 },
-      { "name": "S2", "value": 30 }
+      { "name": "S3", "value": 496 },
+      { "name": "S2", "value": 833 },
+      { "name": "N/A", "value": 1 },
+      { "name": "Sp", "value": 10 }
     ],
     "byPosition": [
-      { "name": "Profesor", "value": 0 },
-      { "name": "Lektor Kepala", "value": 10 },
-      { "name": "Lektor", "value": 5 },
-      { "name": "Asisten Ahli", "value": 2 },
-      { "name": "Tenaga Pengajar", "value": 0 }
+      { "name": "Profesor", "value": 144 },
+      { "name": "Lektor Kepala", "value": 263 },
+      { "name": "Lektor", "value": 469 },
+      { "name": "Asisten Ahli", "value": 205 },
+      { "name": "Tenaga Pengajar", "value": 259 }
     ],
     "byStatus": [
-      { "name": "PNS", "value": 2 },
-      { "name": "DLB", "value": 2 },
-      { "name": "Tetap", "value": 30 }
+      { "name": "PNS", "value": 1026 },
+      { "name": "Tidak Tetap", "value": 69 },
+      { "name": "Tetap", "value": 30 },
+      { "name": "PPPK", "value": 52 },
+      { "name": "CPNS", "value": 163 }
+    ],
+    "byFaculty": [
+      { "name": "FMIPA", "value": 199 },
+      { "name": "FT", "value": 211 },
+      { "name": "FIP", "value": 173 },
+      { "name": "FBS", "value": 215 },
+      { "name": "FIS", "value": 131 },
+      { "name": "FE", "value": 176 },
+      { "name": "FIK", "value": 88 },
+      { "name": "FH", "value": 64 },
+      { "name": "FK", "value": 83 }
     ],
     "profiles": [
       {
@@ -205,11 +229,11 @@
   },
   "stats": {
     "professors": {
-      "total": 30,
-      "s3Percentage": 2
+      "total": 1340,
+      "s3Percentage": 37
     },
     "students": {
-      "total": 1000,
+      "total": 52002,
       "yearlyIncreasePercentage": 12
     },
     "graduation": {
@@ -217,9 +241,9 @@
       "yearlyDecreasePercentage": 83
     },
     "applicants": {
-      "total": 1000,
+      "total": 123187,
       "yearlyDecreasePercentage": 25
     }
   },
-  "lastUpdated": "2025-06-14T08:30:00Z"
+  "lastUpdated": "2023-06-14T08:30:00Z"
 }

@@ -22,7 +22,7 @@ const Dashboard = () => {
           
           <StudentSection 
             byYear={data.students.byYear}
-            byFaculty={data.students.byFaculty}
+            byProdi={data.students.byProdi}
             byLevel={data.students.byLevel}
           />
           
@@ -30,7 +30,7 @@ const Dashboard = () => {
             byEducation={data.professors.byEducation}
             byPosition={data.professors.byPosition}
             byStatus={data.professors.byStatus}
-            byFaculty={data.professors.byFaculty}
+            byFaculty={data.professors.byEducation}
           />
           
           <Footer lastUpdated={lastUpdated} />

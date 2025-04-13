@@ -104,14 +104,14 @@ export interface Stats {
 export interface DatabaseData {
   students: {
     byYear: StudentByYear[];
-    byFaculty: DataByName[];
+    byProdi: DataByName[];
     byLevel: DataByName[];
   };
   professors: {
     byEducation: DataByName[];
     byPosition: DataByName[];
     byStatus: DataByName[];
-    byFaculty: DataByName[];
+    byProdi: DataByName[];
     profiles: ProfessorProfile[];
   };
   stats: Stats;
@@ -147,7 +147,7 @@ export const getStudentsByYear = (): StudentByYear[] => {
 
 // Fungsi untuk mendapatkan data mahasiswa berdasarkan fakultas
 export const getStudentsByFaculty = (): DataByName[] => {
-  return database.students.byFaculty;
+  return database.students.byProdi;
 };
 
 // Fungsi untuk mendapatkan data mahasiswa berdasarkan tingkat
@@ -172,7 +172,7 @@ export const getProfessorsByStatus = (): DataByName[] => {
 
 // Fungsi untuk mendapatkan data dosen berdasarkan fakultas
 export const getProfessorsByFaculty = (): DataByName[] => {
-  return database.professors.byFaculty;
+  return database.professors.byEducation;
 };
 
 // Fungsi untuk mendapatkan semua profil dosen

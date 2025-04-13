@@ -9,11 +9,11 @@ import FilterableDataTable from "./FilterableDataTable";
 
 interface StudentSectionProps {
   byYear: StudentByYear[];
-  byFaculty: DataByName[];
+  byProdi: DataByName[];
   byLevel: DataByName[];
 }
 
-const StudentSection = ({ byYear, byFaculty, byLevel }: StudentSectionProps) => {
+const StudentSection = ({ byYear, byProdi, byLevel }: StudentSectionProps) => {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -25,16 +25,16 @@ const StudentSection = ({ byYear, byFaculty, byLevel }: StudentSectionProps) => 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <StudentYearChart data={byYear} />
         <HorizontalBarChart 
-          data={byFaculty} 
-          title="Sebaran Mahasiswa Berdasarkan Fakultas" 
+          data={byProdi} 
+          title="Sebaran Mahasiswa Berdasarkan Program Studi" 
         />
         <PieChartComponent 
           data={byLevel} 
           title="Berdasarkan Jenjang" 
         />
         <FilterableDataTable 
-          data={byFaculty}
-          title="Data Mahasiswa Berdasarkan Fakultas"
+          data={byProdi}
+          title="Data Mahasiswa Berdasarkan Program Studi"
         />
       </div>
     </motion.div>
