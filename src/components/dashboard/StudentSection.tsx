@@ -1,5 +1,4 @@
 
-import React from "react";
 import { motion } from "framer-motion";
 import { StudentByYear, DataByName } from "../../utils/databaseService";
 import StudentYearChart from "../charts/StudentYearChart";

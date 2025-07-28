@@ -13,6 +13,28 @@ interface StatCardProps {
   iconBgColor: string;
   iconColor: string;
   delay?: number;
+  trend?: "up" | "down" | "naik" | "turun" | "tambah" | "kurang";
+  trendValue?: string;
+  scopus?: string;
+  wos?: string;
+  googleScholar?: string;
+  googleScholarLink?: string;
+  googleScholarColor?: string;
+  googleScholarValue?: string;
+  googleScholarLinkValue?: string;
+  googleScholarLinkColor?: string;
+  googleScholarLinkColorValue?: string;
+  scopusLink?: string;
+  wosLink?: string;
+  scopusColor?: string;
+  wosColor?: string;
+  scopusValue?: string;
+  wosValue?: string;
+  scopusLinkValue?: string;
+  wosLinkValue?: string;
+  scopusLinkColor?: string;
+  wosLinkColor?: string;
+  scopusLinkColorValue?: string;
 }
 
 const StatCard = ({

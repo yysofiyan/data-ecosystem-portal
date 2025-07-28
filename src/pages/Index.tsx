@@ -66,13 +66,13 @@ const Index = () => {
                 Platform terintegrasi untuk pengelolaan dan akses data fakultas
                 yang terstandarisasi
               </p>
-              <a
-                href="#"
+              <Link
+                to="/satu-data"
                 className="inline-flex items-center text-portal-teal hover:text-portal-teal/80 transition-colors"
               >
                 Pelajari Lebih Lanjut
                 <ArrowRight className="ml-2 h-4 w-4" />
-              </a>
+              </Link>
             </motion.div>
 
             <motion.div
@@ -84,7 +84,7 @@ const Index = () => {
               <div className="h-12 w-12 bg-portal-purple/10 rounded-lg flex items-center justify-center mb-4">
                 <Globe className="h-6 w-6 text-portal-purple" />
               </div>
-              <h3 className="text-xl font-semibold mb-2">Ekosistem Data FTI</h3>
+              <h3 className="text-xl font-semibold mb-2">Ekosistem Data</h3>
               <p className="text-gray-600 mb-4">
                 Berbicara dengan Data adalah semangat kami. Ekosistem Data FTI adalah
                 portal terintegrasi untuk keterbukaan data

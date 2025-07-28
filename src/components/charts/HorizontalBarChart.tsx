@@ -27,7 +27,7 @@ const HorizontalBarChart = ({
     <div className="bg-white p-6 rounded-xl shadow-sm"> {/* Container dengan styling */}
       <h3 className="text-lg font-semibold mb-4">{title}</h3> {/* Judul chart */}
       <div className="h-[300px]"> {/* Container untuk chart dengan tinggi 300px */}
-        <ResponsiveContainer width="100%" height="100%"> {/* Membuat chart responsif */}
+        <ResponsiveContainer width="100%" height="100%">
           <BarChart data={data} layout="vertical"> {/* Membuat bar chart dengan layout vertikal */}
             <CartesianGrid strokeDasharray="3 3" /> {/* Menambahkan grid dengan garis putus-putus */}
             <XAxis type="number" /> {/* Sumbu X dengan tipe angka */}

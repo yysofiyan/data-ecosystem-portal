@@ -1,5 +1,4 @@
 
-import React from "react";
 import { BookOpen, GraduationCap, Users } from "lucide-react";
 import StatCard from "./StatCard";
 import { Stats } from "../../utils/databaseService";
@@ -40,7 +39,7 @@ const StatSection = ({ stats }: StatSectionProps) => {
         delay={0.2}
       />
       <StatCard
-        title="Peminat 2024"
+        title="Peminat 2025"
         value={stats.applicants.total}
         percentageChange={stats.applicants.yearlyDecreasePercentage}
         increaseIsGood={false}

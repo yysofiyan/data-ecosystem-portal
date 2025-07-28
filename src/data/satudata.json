@@ -1,0 +1,107 @@
+{
+  "publications": {
+    "total": 42,
+    "byYear": [
+      {"year": "2025", "count": 15},
+      {"year": "2024", "count": 10},
+      {"year": "2023", "count": 12},
+      {"year": "2022", "count": 8},
+      {"year": "2021", "count": 7},
+      {"year": "2020", "count": 5}
+    ],
+    "byType": [
+      {"name": "Jurnal", "value": 30},
+      {"name": "Prosiding", "value": 10},
+      {"name": "Buku", "value": 2}
+    ]
+  },
+  "patents": {
+    "total": 15,
+    "byYear": [
+      {"year": "2025", "count": 5},
+      {"year": "2024", "count": 4},
+      {"year": "2023", "count": 3},
+      {"year": "2022", "count": 2},
+      {"year": "2021", "count": 1}
+    ],
+    "byType": [
+      {"name": "Tidak Terindeks", "value": 10},
+      {"name": "Terindeks", "value": 5}
+    ]
+  },
+  "patentApplications": {
+    "total": 20,
+    "byYear": [
+      {"year": "2025", "count": 5},
+      {"year": "2024", "count": 4},
+      {"year": "2023", "count": 3},
+      {"year": "2022", "count": 2},
+      {"year": "2021", "count": 1}
+    ],
+    "byStatus": [
+      {"name": "Pending", "value": 10},
+      {"name": "Approved", "value": 5},
+      {"name": "Rejected", "value": 2},
+      {"name": "Expired", "value": 1},
+      {"name": "Withdrawn", "value": 1}
+    ]
+  },
+  "publicationsList": [
+    {"name": "Jurnal 1", "value": 30}
+  ],
+  "researchAreas": [
+    {"name": "Sains", "value": 30},
+    {"name": "Teknologi", "value": 20},
+    {"name": "Sosial", "value": 10}
+  ],
+  "researchInterests": [
+    {"name": "Matematika", "value": 30},
+    {"name": "Fisika", "value": 20},
+    {"name": "Kimia", "value": 10}
+  ],
+  "awards": [
+    {"name": "Prestasi Akademik", "value": 20},
+    {"name": "Prestasi Non-Akademik", "value": 10}
+  ],
+  "teachingExperience": [
+    {"name": "Matematika", "value": 30},
+    {"name": "Fisika", "value": 20},
+    {"name": "Kimia", "value": 10}
+  ],
+  "researchExperience": [
+    {"name": "Sains", "value": 30},
+    {"name": "Teknologi", "value": 20},
+    {"name": "Sosial", "value": 10}
+  ],
+  "projects": [
+    {"name": "Proyek 1", "value": 30},
+    {"name": "Proyek 2", "value": 20},
+    {"name": "Proyek 3", "value": 10}
+  ],
+  "patentsList": [
+    {"name": "Patent 1", "value": 30},
+    {"name": "Patent 2", "value": 20},
+    {"name": "Patent 3", "value": 10}
+  ],
+  "patentApplicationsList": [
+    {"name": "Permohonan 1", "value": 30},
+    {"name": "Permohonan 2", "value": 20},
+    {"name": "Permohonan 3", "value": 10}
+  ],
+  "stats": {
+    "students": {
+      "total": 4321,
+      "yearlyIncreasePercentage": 12
+    },
+    "professors": {
+      "total": 150,
+      "s3Percentage": 30
+    },
+    "graduationRate": 85,
+    "publications": {
+      "total": 200,
+      "scopusIndexed": 50
+    }
+  },
+  "lastUpdated": "2024-06-14T08:30:00Z"
+}

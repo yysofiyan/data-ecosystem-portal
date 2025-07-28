@@ -1,6 +1,4 @@
 
-import React from "react";
-import { motion } from "framer-motion";
 import { getDatabaseData, getFormattedLastUpdated } from "../utils/databaseService";
 import NavBar from "../components/dashboard/NavBar";
 import StatSection from "../components/dashboard/StatSection";

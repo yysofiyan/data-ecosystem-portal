@@ -122,7 +122,7 @@ export interface DatabaseData {
 
 // Interface untuk mendapatkan data lengkap database
 export const getDatabaseData = (): DatabaseData => {
-  return database as DatabaseData;
+  return database as unknown as DatabaseData;
 };
 
 // Fungsi untuk mendapatkan timestamp terakhir diperbarui yang diformat
