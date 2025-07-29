@@ -1,6 +1,3 @@
-
-import database from '../data/database.json';
-
 export interface StudentByYear {
   year: string;
   count: number;
@@ -111,83 +108,101 @@ export interface DatabaseData {
     byEducation: DataByName[];
     byPosition: DataByName[];
     byStatus: DataByName[];
-    byProdi: DataByName[];
     profiles: ProfessorProfile[];
   };
   stats: Stats;
   lastUpdated: string;
 }
-// Impor file JSON database yang berisi semua data
-// Database import moved to top of file to avoid duplicate identifier
 
-// Interface untuk mendapatkan data lengkap database
-export const getDatabaseData = (): DatabaseData => {
-  return database as unknown as DatabaseData;
-};
+// Variabel untuk menyimpan cache data yang sudah diambil dari API
+let cachedData: DatabaseData | null = null;
 
-// Fungsi untuk mendapatkan timestamp terakhir diperbarui yang diformat
-export const getFormattedLastUpdated = (): string => {
-  const lastUpdated = new Date(database.lastUpdated);
-  const now = new Date();
-  
-  const diffInHours = Math.floor((now.getTime() - lastUpdated.getTime()) / (1000 * 60 * 60));
-  
-  if (diffInHours < 24) {
-    return `${diffInHours} jam yang lalu`;
-  } else {
-    const diffInDays = Math.floor(diffInHours / 24);
-    return `${diffInDays} hari yang lalu`;
+/**
+ * Mengambil data dari backend API.
+ * Menggunakan cache untuk menghindari permintaan berulang.
+ */
+async function fetchAndCacheData(): Promise<DatabaseData> {
+  // Jika data sudah ada di cache, langsung kembalikan
+  if (cachedData) {
+    return cachedData;
   }
+  
+  try {
+    // Panggil API backend
+    const response = await fetch('http://localhost:3001/api/all-data');
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    const data: DatabaseData = await response.json();
+    cachedData = data; // Simpan data ke cache untuk panggilan berikutnya
+    return data;
+  } catch (error) {
+    console.error("Gagal mengambil data dari API:", error);
+    // Kembalikan struktur data kosong agar aplikasi tidak crash jika API gagal
+    return {
+      students: { byYear: [], byProdi: [], byLevel: [] },
+      professors: { byEducation: [], byPosition: [], byStatus: [], profiles: [] },
+      stats: { 
+        professors: { total: 0, s3Percentage: 0 }, 
+        students: { total: 0, yearlyIncreasePercentage: 0 }, 
+        graduation: { total: 0, yearlyDecreasePercentage: 0 }, 
+        applicants: { total: 0, yearlyDecreasePercentage: 0 } 
+      },
+      lastUpdated: new Date().toISOString(),
+    };
+  }
+}
+
+// --- Ubah semua fungsi `get...` menjadi async dan menggunakan data dari API ---
+
+export const getDatabaseData = async (): Promise<DatabaseData> => {
+  return await fetchAndCacheData();
 };
 
-// Fungsi untuk mendapatkan data mahasiswa berdasarkan tahun
-export const getStudentsByYear = (): StudentByYear[] => {
-  return database.students.byYear;
+export const getStats = async (): Promise<Stats> => {
+  const data = await fetchAndCacheData();
+  return data.stats;
 };
 
-// Fungsi untuk mendapatkan data mahasiswa berdasarkan fakultas
-export const getStudentsByFaculty = (): DataByName[] => {
-  return database.students.byProdi;
+export const getStudentsByYear = async (): Promise<StudentByYear[]> => {
+  const data = await fetchAndCacheData();
+  return data.students.byYear;
 };
 
-// Fungsi untuk mendapatkan data mahasiswa berdasarkan tingkat
-export const getStudentsByLevel = (): DataByName[] => {
-  return database.students.byLevel;
+export const getStudentsByProdi = async (): Promise<DataByName[]> => {
+  const data = await fetchAndCacheData();
+  return data.students.byProdi;
 };
 
-// Fungsi untuk mendapatkan data dosen berdasarkan pendidikan
-export const getProfessorsByEducation = (): DataByName[] => {
-  return database.professors.byEducation;
+export const getStudentsByLevel = async (): Promise<DataByName[]> => {
+  const data = await fetchAndCacheData();
+  return data.students.byLevel;
 };
 
-// Fungsi untuk mendapatkan data dosen berdasarkan posisi
-export const getProfessorsByPosition = (): DataByName[] => {
-  return database.professors.byPosition;
+export const getProfessorsByEducation = async (): Promise<DataByName[]> => {
+  const data = await fetchAndCacheData();
+  return data.professors.byEducation;
 };
 
-// Fungsi untuk mendapatkan data dosen berdasarkan status
-export const getProfessorsByStatus = (): DataByName[] => {
-  return database.professors.byStatus;
+export const getProfessorsByPosition = async (): Promise<DataByName[]> => {
+  const data = await fetchAndCacheData();
+  return data.professors.byPosition;
 };
 
-// Fungsi untuk mendapatkan data dosen berdasarkan fakultas
-export const getProfessorsByFaculty = (): DataByName[] => {
-  return database.professors.byEducation;
+export const getProfessorsByStatus = async (): Promise<DataByName[]> => {
+  const data = await fetchAndCacheData();
+  return data.professors.byStatus;
 };
 
-// Fungsi untuk mendapatkan semua profil dosen
-export const getProfessorProfiles = (): ProfessorProfile[] => {
-  return database.professors.profiles;
+export const getProfessorProfiles = async (): Promise<ProfessorProfile[]> => {
+  const data = await fetchAndCacheData();
+  return data.professors.profiles;
 };
 
-// Fungsi untuk mendapatkan profil dosen berdasarkan posisi tertentu
-export const getProfessorProfilesByPosition = (position: string): ProfessorProfile[] => {
-  return database.professors.profiles.filter(profile => 
-    profile.position.toLowerCase() === position.toLowerCase()
-  );
+// Mengubah fungsi ini menjadi async juga untuk konsistensi
+export const getProfessorProfilesByPosition = async (position: string): Promise<ProfessorProfile[]> => {
+  const data = await fetchAndCacheData();
+  return data.professors.profiles.filter(p => p.position === position);
 };
 
-// Fungsi untuk mendapatkan data statistik
-export const getStats = (): Stats => {
-  return database.stats;
-};
+// Anda mungkin perlu menambahkan fungsi lain di sini jika ada yang belum tercover

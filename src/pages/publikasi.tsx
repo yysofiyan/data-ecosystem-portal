@@ -35,9 +35,10 @@ const SatuData = () => {
                             <Database className="h-6 w-6 text-portal-teal" />
                         </div>
                         <div>
-                            <h1 className="text-3xl font-bold text-portal-dark">Satu Data</h1>
+                            <h1 className="text-3xl font-bold text-portal-dark">Publikasi</h1>
                             <p className="text-gray-600">
-                                Platform terintegrasi untuk pengelolaan dan akses data fakultas
+                                Akses data publikasi penelitian dan pengabdian masyarakat yang telah
+                                dilakukan oleh sivitas akademika.
                             </p>
                         </div>
                     </motion.div>

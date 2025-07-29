@@ -6,31 +6,7 @@ import { id } from 'date-fns/locale';
 import { CheckCircle, User } from 'lucide-react';
 import { BarChart, Bar, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import { Bookmark, Award, Star, BarChart2 } from 'lucide-react';
-
-// Interface untuk tipe data gambar statis
-interface StaticImageData {
-  src: string;
-  height: number;
-  width: number;
-  blurDataURL?: string;
-}
-
-// Komponen Image untuk menampilkan gambar dengan berbagai properti
-const Image = ({ src, alt, fill, className, onError }: { 
-  src: string | StaticImageData, 
-  alt: string,
-  fill?: boolean,
-  className?: string,
-  onError?: (e: React.SyntheticEvent<HTMLImageElement, Event>) => void 
-}) => (
-  <img 
-    src={typeof src === 'string' ? src : src.src}
-    alt={alt}
-    className={className}
-    style={fill ? { width: '100%', height: '100%', objectFit: 'cover' } : undefined}
-    onError={onError}
-  />
-);
+import ProfessorAvatar from './ProfessorAvatar';
 
 // Interface untuk props komponen ProfessorDetail
 interface ProfessorDetailProps {
@@ -39,9 +15,32 @@ interface ProfessorDetailProps {
 
 // Komponen utama untuk menampilkan detail profil profesor
 const ProfessorDetail: React.FC<ProfessorDetailProps> = ({ professor }) => {
+  // "Lapisan Pengaman" untuk memastikan semua data nested adalah objek.
+  // Ini akan mem-parsing data jika backend secara tidak terduga mengirimkannya sebagai string.
+  const safeProfessor = {
+    ...professor,
+    academicProfile: typeof professor.academicProfile === 'string' 
+      ? JSON.parse(professor.academicProfile) 
+      : professor.academicProfile,
+    rank: typeof professor.rank === 'string' 
+      ? JSON.parse(professor.rank) 
+      : professor.rank,
+    certification: typeof professor.certification === 'string' 
+      ? JSON.parse(professor.certification) 
+      : professor.certification,
+    sintaProfile: typeof professor.sintaProfile === 'string' 
+      ? JSON.parse(professor.sintaProfile) 
+      : professor.sintaProfile,
+  };
+
   // Fungsi untuk memformat tanggal ke format yang diinginkan
   const formatDate = (dateString: string) => {
-    return format(new Date(dateString), 'd MMM yyyy', { locale: id });
+    if (!dateString) return '-';
+    try {
+      return format(new Date(dateString), 'd MMM yyyy', { locale: id });
+    } catch (error) {
+      return 'Tanggal tidak valid';
+    }
   };
   const getMetricsChartData = () => {
     if (!professor.sintaProfile?.metrics) return [];
@@ -86,18 +85,11 @@ const ProfessorDetail: React.FC<ProfessorDetailProps> = ({ professor }) => {
       <div className="flex flex-col md:flex-row items-start gap-6 mb-8">
         {/* Container foto profil */}
         <div className="flex-shrink-0 w-full md:w-auto relative">
-          <div className="w-full md:w-48 h-48 relative">
-            <Image
-              src={professor.photoUrl || '/images/default-avatar.jpg'}
-              alt={professor.name}
-              fill
-              className="rounded-xl object-cover shadow-md hover:shadow-xl transition-shadow duration-300"
-              onError={(e) => {
-                const img = e.target as HTMLImageElement;
-                img.src = '/images/default-avatar.jpg';
-              }}
-            />
-          </div>
+          <ProfessorAvatar
+            name={safeProfessor.name}
+            photoUrl={safeProfessor.photoUrl}
+            size="xl"
+          />
         </div>
         
         {/* Informasi dasar dosen */}
@@ -105,9 +97,9 @@ const ProfessorDetail: React.FC<ProfessorDetailProps> = ({ professor }) => {
           {/* Nama dan status verifikasi */}
           <div className="flex items-center gap-2 flex-wrap">
             <h2 className="text-2xl md:text-3xl font-bold text-gray-800">
-              {professor.name}
+              {safeProfessor.name}
             </h2>
-            {professor.verified && (
+            {safeProfessor.verified && (
               <span className="inline-flex items-center px-3 py-1 rounded-full bg-green-100 text-green-600 text-sm font-medium">
                 <CheckCircle className="w-4 h-4 mr-1" />
                 Terverifikasi
@@ -117,18 +109,9 @@ const ProfessorDetail: React.FC<ProfessorDetailProps> = ({ professor }) => {
           
           {/* Detail informasi dasar */}
           <div className="space-y-3">
-            <div className="flex">
-              <span className="font-semibold w-32">NUPTK</span>
-              <span className="flex-1">: {professor.nuptk}</span>
-            </div>
-            <div className="flex">
-              <span className="font-semibold w-32">Jabatan</span>
-              <span className="flex-1">: {professor.position}</span>
-            </div>
-            <div className="flex">
-              <span className="font-semibold w-32">Tanggal mulai</span>
-              <span className="flex-1">: {formatDate(professor.startDate)}</span>
-            </div>
+            <div className="flex"><span className="font-semibold w-32">NUPTK</span><span className="flex-1">: {safeProfessor.nuptk}</span></div>
+            <div className="flex"><span className="font-semibold w-32">Jabatan</span><span className="flex-1">: {safeProfessor.position}</span></div>
+            <div className="flex"><span className="font-semibold w-32">Tanggal mulai</span><span className="flex-1">: {formatDate(safeProfessor.startDate)}</span></div>
           </div>
         </div>
       </div>
@@ -137,70 +120,55 @@ const ProfessorDetail: React.FC<ProfessorDetailProps> = ({ professor }) => {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <div className="space-y-6">
           {/* Bagian profil akademis */}
-          <div className="bg-gray-50 p-6 rounded-lg">
-            <h3 className="text-xl font-bold mb-4 text-gray-800 border-b pb-2">
-              Data Profil Akademis
-            </h3>
-            <div className="space-y-4">
-              <div>
-                <h4 className="font-semibold text-gray-700 mb-2">Rumpun Ilmu</h4>
-                <p className="text-gray-600 ml-4">{professor.academicProfile.fieldOfScience}</p>
-              </div>
-              <div className="space-y-2">
-                <div className="flex">
-                  <span className="font-medium w-32">Pohon Ilmu</span>
-                  <span className="flex-1">: {professor.academicProfile.knowledgeTree}</span>
+          {safeProfessor.academicProfile && (
+            <div className="bg-gray-50 p-6 rounded-lg">
+              <h3 className="text-xl font-bold mb-4 text-gray-800 border-b pb-2">
+                Data Profil Akademis
+              </h3>
+              <div className="space-y-4">
+                <div>
+                  <h4 className="font-semibold text-gray-700 mb-2">Rumpun Ilmu</h4>
+                  <p className="text-gray-600 ml-4">{safeProfessor.academicProfile.fieldOfScience}</p>
                 </div>
-                <div className="flex">
-                  <span className="font-medium w-32">Cabang Ilmu</span>
-                  <span className="flex-1">: {professor.academicProfile.branch}</span>
+                <div className="space-y-2">
+                  <div className="flex"><span className="font-medium w-32">Pohon Ilmu</span><span className="flex-1">: {safeProfessor.academicProfile.knowledgeTree}</span></div>
+                  <div className="flex"><span className="font-medium w-32">Cabang Ilmu</span><span className="flex-1">: {safeProfessor.academicProfile.branch}</span></div>
                 </div>
               </div>
             </div>
-          </div>
+          )}
 
           {/* Bagian kepangkatan */}
-          <div className="bg-gray-50 p-6 rounded-lg">
-            <h3 className="text-xl font-bold mb-4 text-gray-800 border-b pb-2 flex items-center">
-              <Award className="w-5 h-5 mr-2 text-gray-600" />
-              Kepangkatan
-            </h3>
-            <div className="space-y-3">
-              <p className="text-gray-600">{professor.rank.title}</p>
-              <div className="flex">
-                <span className="font-medium w-32">Tanggal mulai</span>
-                <span className="flex-1">: {formatDate(professor.rank.startDate)}</span>
+          {safeProfessor.rank && (
+            <div className="bg-gray-50 p-6 rounded-lg">
+              <h3 className="text-xl font-bold mb-4 text-gray-800 border-b pb-2 flex items-center">
+                <Award className="w-5 h-5 mr-2 text-gray-600" />
+                Kepangkatan
+              </h3>
+              <div className="space-y-3">
+                <p className="text-gray-600">{safeProfessor.rank.title}</p>
+                <div className="flex"><span className="font-medium w-32">Tanggal mulai</span><span className="flex-1">: {formatDate(safeProfessor.rank.startDate)}</span></div>
               </div>
             </div>
-          </div>
+          )}
         </div>
 
         {/* Bagian status sertifikasi dosen */}
-        <div className="bg-gray-50 p-6 rounded-lg h-fit">
-          <h3 className="text-xl font-bold mb-4 text-gray-800 border-b pb-2">
-            Status Serdos
-          </h3>
-          <div className="space-y-3">
-            <div className="flex">
-              <span className="font-medium w-32">Bidang Studi</span>
-              <span className="flex-1">: {professor.certification.fieldOfStudy || '-'}</span>
-            </div>
-            <div className="flex">
-              <span className="font-medium w-32">No. Registrasi</span>
-              <span className="flex-1">: {professor.certification.educatorRegistrationNumber || '-'}</span>
-            </div>
-            <div className="flex">
-              <span className="font-medium w-32">No. SK</span>
-              <span className="flex-1">: {professor.certification.decreNumber || '-'}</span>
-            </div>
-            <div className="flex">
-              <span className="font-medium w-32">Tahun Serdos</span>
-              <span className="flex-1">: {professor.certification.certificationYear || '-'}</span>
+        {safeProfessor.certification && (
+          <div className="bg-gray-50 p-6 rounded-lg h-fit">
+            <h3 className="text-xl font-bold mb-4 text-gray-800 border-b pb-2">
+              Status Serdos
+            </h3>
+            <div className="space-y-3">
+              <div className="flex"><span className="font-medium w-32">Bidang Studi</span><span className="flex-1">: {safeProfessor.certification.fieldOfStudy || '-'}</span></div>
+              <div className="flex"><span className="font-medium w-32">No. Registrasi</span><span className="flex-1">: {safeProfessor.certification.educatorRegistrationNumber || '-'}</span></div>
+              <div className="flex"><span className="font-medium w-32">No. SK</span><span className="flex-1">: {safeProfessor.certification.decreNumber || '-'}</span></div>
+              <div className="flex"><span className="font-medium w-32">Tahun Serdos</span><span className="flex-1">: {safeProfessor.certification.certificationYear || '-'}</span></div>
             </div>
           </div>
-        </div>
+        )}
       </div>
-      {professor.sintaProfile && (
+      {safeProfessor.sintaProfile && (
         <div className="mt-6">
           <div className="bg-gray-50 p-6 rounded-lg">
             <h3 className="text-xl font-bold mb-4 text-gray-800 border-b pb-2 flex items-center">
@@ -214,7 +182,7 @@ const ProfessorDetail: React.FC<ProfessorDetailProps> = ({ professor }) => {
                     <User className="w-5 h-5 mr-2 text-gray-600" />
                     <h4 className="font-semibold text-gray-700">SINTA ID</h4>
                   </div>
-                  <p className="text-gray-600 ml-7">{professor.sintaProfile.id}</p>
+                  <p className="text-gray-600 ml-7">{safeProfessor.sintaProfile.id}</p>
                 </div>
                 <div className="bg-white p-4 rounded-lg shadow-sm">
                   <div className="grid grid-cols-2 gap-4">
@@ -222,28 +190,28 @@ const ProfessorDetail: React.FC<ProfessorDetailProps> = ({ professor }) => {
                       <Award className="w-5 h-5 text-gray-600" />
                       <div>
                         <p className="text-sm text-gray-500">SINTA Score</p>
-                        <p className="font-semibold text-gray-700">{professor.sintaProfile["SINTA Score Overall"]}</p>
+                        <p className="font-semibold text-gray-700">{safeProfessor.sintaProfile["SINTA Score Overall"]}</p>
                       </div>
                     </div>
                     <div className="flex items-center space-x-2">
                       <Award className="w-5 h-5 text-gray-600" />
                       <div>
                         <p className="text-sm text-gray-500">3 Years</p>
-                        <p className="font-semibold text-gray-700">{professor.sintaProfile["SINTA Score 3Yr"]}</p>
+                        <p className="font-semibold text-gray-700">{safeProfessor.sintaProfile["SINTA Score 3Yr"]}</p>
                       </div>
                     </div>
                     <div className="flex items-center space-x-2">
                       <Star className="w-5 h-5 text-gray-600" />
                       <div>
                         <p className="text-sm text-gray-500">Affl Score</p>
-                        <p className="font-semibold text-gray-700">{professor.sintaProfile["Affl Score"]}</p>
+                        <p className="font-semibold text-gray-700">{safeProfessor.sintaProfile["Affl Score"]}</p>
                       </div>
                     </div>
                     <div className="flex items-center space-x-2">
                       <Star className="w-5 h-5 text-gray-600" />
                       <div>
                         <p className="text-sm text-gray-500">Affl 3Yr</p>
-                        <p className="font-semibold text-gray-700">{professor.sintaProfile["Affl Score 3Yr"]}</p>
+                        <p className="font-semibold text-gray-700">{safeProfessor.sintaProfile["Affl Score 3Yr"]}</p>
                       </div>
                     </div>
                   </div>
@@ -264,33 +232,33 @@ const ProfessorDetail: React.FC<ProfessorDetailProps> = ({ professor }) => {
                       <tbody className="divide-y divide-gray-200">
                         <tr>
                           <td className="px-4 py-2 text-sm font-medium text-gray-700">Article</td>
-                          <td className="px-4 py-2 text-center text-sm text-gray-600">{professor.sintaProfile?.metrics.scopus.articles}</td>
-                          <td className="px-4 py-2 text-center text-sm text-gray-600">{professor.sintaProfile?.metrics.googleScholar.articles}</td>
+                          <td className="px-4 py-2 text-center text-sm text-gray-600">{safeProfessor.sintaProfile?.metrics.scopus.articles}</td>
+                          <td className="px-4 py-2 text-center text-sm text-gray-600">{safeProfessor.sintaProfile?.metrics.googleScholar.articles}</td>
                         </tr>
                         <tr>
                           <td className="px-4 py-2 text-sm font-medium text-gray-700">Citation</td>
-                          <td className="px-4 py-2 text-center text-sm text-gray-600">{professor.sintaProfile?.metrics.scopus.citations}</td>
-                          <td className="px-4 py-2 text-center text-sm text-gray-600">{professor.sintaProfile?.metrics.googleScholar.citations}</td>
+                          <td className="px-4 py-2 text-center text-sm text-gray-600">{safeProfessor.sintaProfile?.metrics.scopus.citations}</td>
+                          <td className="px-4 py-2 text-center text-sm text-gray-600">{safeProfessor.sintaProfile?.metrics.googleScholar.citations}</td>
                         </tr>
                         <tr>
                           <td className="px-4 py-2 text-sm font-medium text-gray-700">Cited Document</td>
-                          <td className="px-4 py-2 text-center text-sm text-gray-600">{professor.sintaProfile?.metrics.scopus.citedDocuments}</td>
-                          <td className="px-4 py-2 text-center text-sm text-gray-600">{professor.sintaProfile?.metrics.googleScholar.citedDocuments}</td>
+                          <td className="px-4 py-2 text-center text-sm text-gray-600">{safeProfessor.sintaProfile?.metrics.scopus.citedDocuments}</td>
+                          <td className="px-4 py-2 text-center text-sm text-gray-600">{safeProfessor.sintaProfile?.metrics.googleScholar.citedDocuments}</td>
                         </tr>
                         <tr>
                           <td className="px-4 py-2 text-sm font-medium text-gray-700">H-Index</td>
-                          <td className="px-4 py-2 text-center text-sm text-gray-600">{professor.sintaProfile?.metrics.scopus.hIndex}</td>
-                          <td className="px-4 py-2 text-center text-sm text-gray-600">{professor.sintaProfile?.metrics.googleScholar.hIndex}</td>
+                          <td className="px-4 py-2 text-center text-sm text-gray-600">{safeProfessor.sintaProfile?.metrics.scopus.hIndex}</td>
+                          <td className="px-4 py-2 text-center text-sm text-gray-600">{safeProfessor.sintaProfile?.metrics.googleScholar.hIndex}</td>
                         </tr>
                         <tr>
                           <td className="px-4 py-2 text-sm font-medium text-gray-700">i10-Index</td>
-                          <td className="px-4 py-2 text-center text-sm text-gray-600">{professor.sintaProfile?.metrics.scopus.i10Index}</td>
-                          <td className="px-4 py-2 text-center text-sm text-gray-600">{professor.sintaProfile?.metrics.googleScholar.i10Index}</td>
+                          <td className="px-4 py-2 text-center text-sm text-gray-600">{safeProfessor.sintaProfile?.metrics.scopus.i10Index}</td>
+                          <td className="px-4 py-2 text-center text-sm text-gray-600">{safeProfessor.sintaProfile?.metrics.googleScholar.i10Index}</td>
                         </tr>
                         <tr>
                           <td className="px-4 py-2 text-sm font-medium text-gray-700">G-Index</td>
-                          <td className="px-4 py-2 text-center text-sm text-gray-600">{professor.sintaProfile?.metrics.scopus.gIndex}</td>
-                          <td className="px-4 py-2 text-center text-sm text-gray-600">{professor.sintaProfile?.metrics.googleScholar.gIndex}</td>
+                          <td className="px-4 py-2 text-center text-sm text-gray-600">{safeProfessor.sintaProfile?.metrics.scopus.gIndex}</td>
+                          <td className="px-4 py-2 text-center text-sm text-gray-600">{safeProfessor.sintaProfile?.metrics.googleScholar.gIndex}</td>
                         </tr>
                       </tbody>
                     </table>
@@ -300,7 +268,7 @@ const ProfessorDetail: React.FC<ProfessorDetailProps> = ({ professor }) => {
             </div>
             <div className="mt-4 text-sm text-blue-600">
               <a 
-                href={professor.sintaProfile.url}
+                href={safeProfessor.sintaProfile.url}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:underline"

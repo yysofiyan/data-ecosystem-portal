@@ -1,75 +1,42 @@
-
-import React from "react";
-import { motion } from "framer-motion";
-import PieChartComponent from "../charts/PieChartComponent";
-import VerticalBarChart from "../charts/VerticalBarChart";
+import React, { useState, useEffect } from "react";
+import { DataByName, ProfessorProfile } from "../../utils/databaseService";
 import HorizontalBarChart from "../charts/HorizontalBarChart";
-import FilterableDataTable from "./FilterableDataTable";
-import { DataByName, ProfessorProfile, getProfessorProfilesByPosition } from "../../utils/databaseService";
+import ProfessorsByPosition from "../ProfessorsByPosition";
 
+// Interface HANYA untuk ProfessorSection
 interface ProfessorSectionProps {
   byEducation: DataByName[];
   byPosition: DataByName[];
   byStatus: DataByName[];
-  byFaculty: DataByName[];
+ // byFaculty: DataByName[];
+  profiles: ProfessorProfile[];
 }
 
+// Definisi HANYA untuk komponen ProfessorSection
 const ProfessorSection = ({
   byEducation,
   byPosition,
   byStatus,
-  byFaculty,
+  // byFaculty,
+  profiles,
 }: ProfessorSectionProps) => {
-  // Get professor profiles for each position
-  const getProfessorsByPositionName = (positionName: string): ProfessorProfile[] => {
-    return getProfessorProfilesByPosition(positionName);
-  };
-
-  // Get all profiles for all positions
-  const getAllProfessorProfiles = (): ProfessorProfile[] => {
-    return byPosition.flatMap(position => getProfessorsByPositionName(position.name));
-  };
-
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, delay: 0.5 }}
-      className="mb-8"
-    >
-      <h2 className="text-2xl font-bold mb-6">Data Dosen</h2>
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <PieChartComponent
-          data={byEducation}
-          title="Berdasarkan Jenjang Pendidikan Tertinggi"
-        />
-        <VerticalBarChart
-          data={byPosition}
-          title="Berdasarkan Jabatan Fungsional"
-        />
-        <PieChartComponent
-          data={byStatus}
-          title="Berdasarkan Status Kepegawaian"
-        />
-        <HorizontalBarChart
-          data={byFaculty}
-          title="Berdasarkan Linearitas"
-          color="#9b87f5"
-        />
-        <FilterableDataTable
-          data={getAllProfessorProfiles()}
-          title="Data Dosen Berdasarkan Jabatan"
-          className="lg:col-span-2"
-          type="profile"
-        />
-        <FilterableDataTable
-          data={byFaculty}
-          title="Data Dosen Berdasarkan Linearitas"
-          className="lg:col-span-2"
-          type="summary"
-        />
+    <div className="mt-6">
+      <h2 className="text-2xl font-bold mb-4">Data Dosen</h2>
+      {/* Chart Section */}
+      {/* Mengubah lg:grid-cols-4 menjadi lg:grid-cols-3 */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+        <HorizontalBarChart data={byEducation} title="Berdasarkan Pendidikan" />
+        <HorizontalBarChart data={byPosition} title="Berdasarkan Jabatan" color="#A78BFA" />
+        <HorizontalBarChart data={byStatus} title="Berdasarkan Status" color="#FBBF24" />
+        {/* <HorizontalBarChart data={byFaculty} title="Berdasarkan Fakultas" color="#34D399" /> */}
       </div>
-    </motion.div>
+      {/* Detail Section */}
+      <div className="bg-white p-6 rounded-xl shadow-sm">
+        <h3 className="text-lg font-semibold mb-4">Detail Dosen Berdasarkan Jabatan</h3>
+        <ProfessorsByPosition data={byPosition} profiles={profiles} />
+      </div>
+    </div>
   );
 };
 

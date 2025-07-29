@@ -6,6 +6,7 @@ import SearchInput from "./SearchInput";
 import FilterDropdown from "./FilterDropdown";
 import { User, Calendar, Briefcase, CheckCircle, XCircle } from "lucide-react";
 import ProfessorDetail from "../ProfessorDetail";
+import ProfessorAvatar from "../ProfessorAvatar";
 import { getProfessorProfilesByPosition } from "../../utils/databaseService";
 
 // Mendefinisikan interface untuk props komponen
@@ -124,10 +125,10 @@ const FilterableDataTable = ({
   }, [data, searchTerm, sortBy, sortOrder, type]);
 
   // Menangani klik pada item ringkasan
-  const handleClick = (item: DataByName) => {
+  const handleClick = async (item: DataByName) => {
     if (type === "summary") {
       const profiles = getProfessorProfilesByPosition(item.name);
-      if (profiles.length > 0) {
+      if ((await profiles).length > 0) {
         setSelectedProfessor(profiles[0]);
       }
     }
@@ -197,10 +198,14 @@ const FilterableDataTable = ({
                 <td className="px-3 py-3 font-medium text-gray-900">
                   <button
                     onClick={() => handleProfessorClick(item)}
-                    className="flex items-center hover:text-blue-600"
+                    className="flex items-center hover:text-blue-600 gap-2"
                   >
-                    <User className="w-4 h-4 mr-2 text-gray-500" />
-                    {item.name}
+                    <ProfessorAvatar
+                      name={item.name}
+                      photoUrl={item.photoUrl}
+                      size="sm"
+                    />
+                    <span>{item.name}</span>
                   </button>
                 </td>
                 <td className="px-3 py-3">

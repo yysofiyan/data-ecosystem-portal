@@ -18,7 +18,7 @@ const Index = () => {
               Selamat Datang
             </h1>
             <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
-              Portal Data terintegrasi untuk keterbukaan dan kemudahan akses data
+              di Portal Data terintegrasi untuk keterbukaan dan kemudahan akses data
               bagi sivitas akademika Fakultas Teknologi Informasi
             </p>
           </motion.div>
@@ -61,16 +61,16 @@ const Index = () => {
               <div className="h-12 w-12 bg-portal-teal/10 rounded-lg flex items-center justify-center mb-4">
                 <Database className="h-6 w-6 text-portal-teal" />
               </div>
-              <h3 className="text-xl font-semibold mb-2">Satu Data</h3>
+              <h3 className="text-xl font-semibold mb-2">Publikasi</h3>
               <p className="text-gray-600 mb-4">
-                Platform terintegrasi untuk pengelolaan dan akses data fakultas
-                yang terstandarisasi
+                Akses data publikasi penelitian dan pengabdian masyarakat yang telah
+                dilakukan oleh sivitas akademika.
               </p>
               <Link
-                to="/satu-data"
+                to="/publikasi"
                 className="inline-flex items-center text-portal-teal hover:text-portal-teal/80 transition-colors"
               >
-                Pelajari Lebih Lanjut
+                Lihat Publikasi
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </motion.div>
@@ -84,16 +84,21 @@ const Index = () => {
               <div className="h-12 w-12 bg-portal-purple/10 rounded-lg flex items-center justify-center mb-4">
                 <Globe className="h-6 w-6 text-portal-purple" />
               </div>
-              <h3 className="text-xl font-semibold mb-2">Ekosistem Data</h3>
+                <div className="flex items-center mb-2">
+                <h3 className="text-xl font-semibold">PERMOHONAN DATA</h3>
+                <span className="ml-3 bg-yellow-200 text-yellow-800 text-xs font-semibold px-2.5 py-0.5 rounded-full">
+                  Coming Soon
+                </span>
+                </div>
               <p className="text-gray-600 mb-4">
-                Berbicara dengan Data adalah semangat kami. Ekosistem Data FTI adalah
-                portal terintegrasi untuk keterbukaan data
+                Ajukan permohonan akses data dengan mudah melalui sistem yang
+                transparan dan terintegrasi.
               </p>
               <a
                 href="#"
                 className="inline-flex items-center text-portal-purple hover:text-portal-purple/80 transition-colors"
               >
-                Jelajahi Ekosistem
+                Ajukan Permohonan
                 <ArrowRight className="ml-2 h-4 w-4" />
               </a>
             </motion.div>
