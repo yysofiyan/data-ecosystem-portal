@@ -1,0 +1,33 @@
+fitur selanjutnya:
+
+Selanjutnya saya ingin ketik klik nama mengarah ke deskripsi profil dengan data berikut:
+
+
+contoh Profil lengkap
+
+Yanyan Sofiyan, M.Kom. (Data Terverifikasi)
+NUPTK : 4048767668131023
+Jabatan: Asisten ahli
+Tanggal mulai: 1 Apr 2019
+
+Data Profil Akademis
+
+Rumpun Ilmu
+
+RUMPUN ILMU FORMAL
+Pohon Ilmu : KOMPUTER
+
+Cabang Ilmu : SISTEM INFORMASI
+
+Kepangkatan
+Penata Muda Tk. I - III/b
+Tanggal mulai: 1 Nov 2019
+
+Status Serdos
+
+Bidang Studi : Sistem Informasi
+No. Registrasi Pendidik : 21104109704697
+No. SK : 21-001022-20758
+Tahun Sertifikasi : 2021
+
+shadcn-ui
