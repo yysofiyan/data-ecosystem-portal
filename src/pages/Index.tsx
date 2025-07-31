@@ -61,7 +61,12 @@ const Index = () => {
               <div className="h-12 w-12 bg-portal-teal/10 rounded-lg flex items-center justify-center mb-4">
                 <Database className="h-6 w-6 text-portal-teal" />
               </div>
-              <h3 className="text-xl font-semibold mb-2">Publikasi</h3>
+                <div className="flex items-center mb-2">
+                <h3 className="text-xl font-semibold">Publikasi</h3>
+                <span className="ml-3 bg-yellow-200 text-yellow-800 text-[8pt] font-semibold px-2.5 py-0.5 rounded-full">
+                  Coming Soon
+                </span>
+                </div>
               <p className="text-gray-600 mb-4">
                 Akses data publikasi penelitian dan pengabdian masyarakat yang telah
                 dilakukan oleh sivitas akademika.
@@ -86,7 +91,7 @@ const Index = () => {
               </div>
                 <div className="flex items-center mb-2">
                 <h3 className="text-xl font-semibold">PERMOHONAN DATA</h3>
-                <span className="ml-3 bg-yellow-200 text-yellow-800 text-xs font-semibold px-2.5 py-0.5 rounded-full">
+                <span className="ml-3 bg-yellow-200 text-yellow-800 text-[8pt] font-semibold px-2.5 py-0.5 rounded-full">
                   Coming Soon
                 </span>
                 </div>

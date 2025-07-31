@@ -21,6 +21,23 @@ const generateInitials = (name: string): string => {
         .toUpperCase();
 };
 
+// Fungsi untuk memproses URL foto
+const processPhotoUrl = (photoUrl?: string): string | undefined => {
+    if (!photoUrl) return undefined;
+    
+    // Jika sudah URL lengkap (http/https), gunakan langsung
+    if (photoUrl.startsWith('http://') || photoUrl.startsWith('https://')) {
+        return photoUrl;
+    }
+    
+    // Jika path relatif, pastikan dimulai dengan /
+    if (!photoUrl.startsWith('/')) {
+        return `/${photoUrl}`;
+    }
+    
+    return photoUrl;
+};
+
 // Definisi ukuran avatar
 const sizeClasses = {
     sm: 'w-8 h-8 text-xs',
@@ -36,12 +53,20 @@ const ProfessorAvatar: React.FC<ProfessorAvatarProps> = ({
     size = 'md',
     className
 }) => {
+    const processedUrl = processPhotoUrl(photoUrl);
+    
     return (
         <Avatar className={cn(sizeClasses[size], 'rounded-xl shadow-md', className)}>
             <AvatarImage
-                src={photoUrl || undefined}
+                src={processedUrl}
                 alt={name}
                 className="object-cover"
+                onError={() => {
+                    // Optional: Log errors for debugging
+                    if (process.env.NODE_ENV === 'development') {
+                        console.warn(`Failed to load image for ${name}:`, processedUrl);
+                    }
+                }}
             />
             <AvatarFallback className={cn(
                 'font-bold bg-gradient-to-br from-blue-500 to-purple-600 text-white',

@@ -5,6 +5,7 @@ import StatSection from "../components/dashboard/StatSection";
 import StudentSection from "../components/dashboard/StudentSection";
 import ProfessorSection from "../components/dashboard/ProfessorSection";
 import Footer from "../components/dashboard/Footer";
+import { DashboardSkeletonEnhanced } from "../components/dashboard/DashboardSkeletonEnhanced";
 
 const Dashboard = () => {
   // State untuk menyimpan data yang diambil dari API
@@ -32,21 +33,32 @@ const Dashboard = () => {
     fetchData();
   }, []); // Array kosong berarti efek ini hanya berjalan sekali
 
-  // Tampilkan pesan loading jika data belum siap
+  // Tampilkan skeleton loading jika data belum siap
   if (loading) {
-    return (
-      <div className="min-h-screen bg-gray-50 flex flex-col items-center justify-center">
-        <div className="w-16 h-16 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
-        <p className="mt-4 text-xl font-semibold text-gray-600">Memuat data dasbor...</p>
-      </div>
-    );
+    return <DashboardSkeletonEnhanced />;
   }
 
   // Tampilkan pesan error jika data gagal dimuat
   if (!data) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <p className="text-xl font-semibold text-red-500">Gagal memuat data.</p>
+      <div className="min-h-screen bg-gray-50 flex flex-col items-center justify-center">
+        <div className="text-center space-y-4">
+          <div className="w-16 h-16 mx-auto text-red-500">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z" />
+            </svg>
+          </div>
+          <div>
+            <h2 className="text-xl font-semibold text-gray-800 mb-2">Gagal Memuat Data</h2>
+            <p className="text-gray-600 mb-4">Terjadi kesalahan saat mengambil data dari server.</p>
+            <button 
+              onClick={() => window.location.reload()} 
+              className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
+            >
+              Coba Lagi
+            </button>
+          </div>
+        </div>
       </div>
     );
   }

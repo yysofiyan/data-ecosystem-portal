@@ -1,0 +1,181 @@
+{
+    "students": {
+        "byYear": [
+            {
+                "year": "2024",
+                "count": 0
+            },
+            {
+                "year": "2023",
+                "count": 0
+            },
+            {
+                "year": "2022",
+                "count": 0
+            },
+            {
+                "year": "2021",
+                "count": 0
+            },
+            {
+                "year": "2020",
+                "count": 0
+            }
+        ],
+        "byProdi": [
+            {
+                "name": "Informatika",
+                "value": 600
+            },
+            {
+                "name": "Sistem Informasi",
+                "value": 500
+            }
+        ],
+        "byLevel": [
+            {
+                "name": "S1",
+                "value": 800
+            },
+            {
+                "name": "S2",
+                "value": 0
+            }
+        ]
+    },
+    "professors": {
+        "byEducation": [
+            {
+                "name": "S3",
+                "value": 2
+            },
+            {
+                "name": "S2",
+                "value": 30
+            }
+        ],
+        "byPosition": [
+            {
+                "name": "Profesor",
+                "value": 0
+            },
+            {
+                "name": "Lektor Kepala",
+                "value": 10
+            },
+            {
+                "name": "Lektor",
+                "value": 5
+            },
+            {
+                "name": "Asisten Ahli",
+                "value": 2
+            },
+            {
+                "name": "Tenaga Pengajar",
+                "value": 0
+            }
+        ],
+        "byStatus": [
+            {
+                "name": "PNS",
+                "value": 2
+            },
+            {
+                "name": "DLB",
+                "value": 2
+            },
+            {
+                "name": "Tetap",
+                "value": 30
+            }
+        ],
+        "profiles": [
+            {
+                "id": 1,
+                "name": "Yanyan Sofiyan, M.Kom.",
+                "photo_url": "/images/professors/yanyan-sofiyan.jpeg",
+                "nuptk": "4048767668131023",
+                "position": "Asisten Ahli",
+                "start_date": "2019-03-31T17:00:00.000Z",
+                "verified": true,
+                "faculty": "FT",
+                "academic_profile": {
+                    "branch": "SISTEM INFORMASI",
+                    "knowledgeTree": "KOMPUTER",
+                    "fieldOfScience": "RUMPUN ILMU FORMAL"
+                },
+                "rank": {
+                    "title": "Penata Muda Tk. I - III/b",
+                    "startDate": "2019-11-01"
+                },
+                "certification": {
+                    "decreNumber": "21-001022-20758",
+                    "fieldOfStudy": "Sistem Informasi",
+                    "certificationYear": 2021,
+                    "educatorRegistrationNumber": "21104109704697"
+                },
+                "sinta_profile": {
+                    "id": "6655767",
+                    "url": "https://sinta.kemdikbud.go.id/authors/profile/6655767",
+                    "hIndex": {
+                        "scopus": 3,
+                        "googleScholar": 6
+                    },
+                    "metrics": {
+                        "scopus": {
+                            "gIndex": 3,
+                            "hIndex": 3,
+                            "articles": 5,
+                            "i10Index": 1,
+                            "citations": 23,
+                            "citedDocuments": 4
+                        },
+                        "googleScholar": {
+                            "gIndex": 1,
+                            "hIndex": 7,
+                            "articles": 34,
+                            "i10Index": 5,
+                            "citations": 127,
+                            "citedDocuments": 12
+                        }
+                    },
+                    "i10Index": {
+                        "googleScholar": 4
+                    },
+                    "citations": {
+                        "scopus": 25,
+                        "googleScholar": 127
+                    },
+                    "documents": {
+                        "scopus": 15,
+                        "googleScholar": 45
+                    },
+                    "Affl Score": 0,
+                    "Affl Score 3Yr": 0,
+                    "SINTA Score 3Yr": 23,
+                    "SINTA Score Overall": 233
+                }
+            }
+        ]
+    },
+    "stats": {
+        "professors": {
+            "total": 30,
+            "s3Percentage": 2
+        },
+        "students": {
+            "total": 1000,
+            "yearlyIncreasePercentage": 12
+        },
+        "graduation": {
+            "total": 1514,
+            "yearlyDecreasePercentage": 83
+        },
+        "applicants": {
+            "total": 1000,
+            "yearlyDecreasePercentage": 25
+        }
+    },
+    "lastUpdated": "2025-06-14T08:30:00.000Z"
+}

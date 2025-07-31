@@ -62,6 +62,7 @@ export interface SintaProfile {
  * @property {ProfessorRank} rank - Peringkat atau pangkat dosen.
  * @property {ProfessorCertification} certification - Sertifikasi dosen.
  * @property {string} faculty - Fakultas tempat dosen bekerja.
+ * @property {string} [homebase] - Program studi homebase dosen (opsional).
  * @property {SintaProfile} [sintaProfile] - Profil Sinta dosen (opsional).
  */
 export interface ProfessorProfile {
@@ -76,6 +77,7 @@ export interface ProfessorProfile {
   rank: ProfessorRank;
   certification: ProfessorCertification;
   faculty: string;
+  homebase?: string;
   sintaProfile?: SintaProfile;
 }
 

@@ -56,3 +56,13 @@
 .section-padding {
   @apply px-6 py-16 md:px-12 lg:px-24;
 }
+
+/* Shimmer animation for skeleton loading */
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
